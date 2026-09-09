@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "OpenSight",
+  "version": "0.1.0",
+  "description": "A calm, powerful accessibility toolkit for the web.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "OpenSight accessibility controls",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "toggle-grayscale": {
+      "suggested_key": {
+        "default": "Alt+Shift+G",
+        "mac": "Command+Shift+G"
+      },
+      "description": "Toggle grayscale mode"
+    },
+    "toggle-invert": {
+      "suggested_key": {
+        "default": "Alt+Shift+I",
+        "mac": "Command+Shift+I"
+      },
+      "description": "Toggle invert colors"
+    }
+  }
+}

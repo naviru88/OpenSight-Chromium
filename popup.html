@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenSight</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow">OPEN SIGHT</p>
+          <h1>Make the web work for you.</h1>
+        </div>
+        <div class="status-dot" title="OpenSight is ready"></div>
+      </header>
+
+      <section class="site-context" aria-labelledby="context-title">
+        <div>
+          <p class="section-kicker">Active context</p>
+          <h2 id="context-title">This site</h2>
+          <p id="site-host" class="muted">Reading current tab…</p>
+        </div>
+        <div class="scope-switch" role="group" aria-label="Settings scope">
+          <button type="button" class="scope-button active" data-scope="site">Site</button>
+          <button type="button" class="scope-button" data-scope="global">Everywhere</button>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Visual clarity</p>
+            <h2>See with less effort</h2>
+          </div>
+          <span class="feature-count">01</span>
+        </div>
+        <div class="control-grid">
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="grayscale" />
+            <span class="toggle-ui"></span>
+            <span><strong>Grayscale</strong><small>Remove color distraction</small></span>
+          </label>
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="invert" />
+            <span class="toggle-ui"></span>
+            <span><strong>Invert colors</strong><small>High-impact contrast</small></span>
+          </label>
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="highlightInteractive" />
+            <span class="toggle-ui"></span>
+            <span><strong>Highlight controls</strong><small>Find links and buttons</small></span>
+          </label>
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="reduceMotion" />
+            <span class="toggle-ui"></span>
+            <span><strong>Reduce motion</strong><small>Quiet animations and video</small></span>
+          </label>
+        </div>
+        <div class="select-row">
+          <label class="field-label" for="colorblind">Color vision</label>
+          <select id="colorblind" data-setting="colorblind">
+            <option value="none">No filter</option>
+            <option value="protanopia">Protanopia</option>
+            <option value="deuteranopia">Deuteranopia</option>
+            <option value="tritanopia">Tritanopia</option>
+          </select>
+        </div>
+        <div class="select-row">
+          <label class="field-label" for="contrast">Contrast preset</label>
+          <select id="contrast" data-setting="contrast">
+            <option value="none">Site default</option>
+            <option value="dark">Light on dark</option>
+            <option value="light">Dark on light</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Readability</p>
+            <h2>Shape the page</h2>
+          </div>
+          <span class="feature-count">02</span>
+        </div>
+        <div class="range-control">
+          <div class="range-label"><span>Text size</span><output id="textScale-value">100%</output></div>
+          <input id="textScale" data-setting="textScale" type="range" min="0.9" max="1.6" step="0.05" value="1" />
+        </div>
+        <div class="range-control">
+          <div class="range-label"><span>Line height</span><output id="lineHeight-value">1.5×</output></div>
+          <input id="lineHeight" data-setting="lineHeight" type="range" min="1.2" max="2.2" step="0.1" value="1.5" />
+        </div>
+        <div class="range-control">
+          <div class="range-label"><span>Letter spacing</span><output id="letterSpacing-value">0</output></div>
+          <input id="letterSpacing" data-setting="letterSpacing" type="range" min="0" max="0.16" step="0.02" value="0" />
+        </div>
+        <div class="control-grid compact">
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="bold" />
+            <span class="toggle-ui"></span>
+            <span><strong>Bold text</strong><small>Increase text weight</small></span>
+          </label>
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="simplified" />
+            <span class="toggle-ui"></span>
+            <span><strong>Text-only view</strong><small>Strip visual clutter</small></span>
+          </label>
+        </div>
+        <div class="select-row">
+          <label class="field-label" for="font">Reading font</label>
+          <select id="font" data-setting="font">
+            <option value="default">Use site font</option>
+            <option value="dyslexia">Friendly reading font</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Focus aids</p>
+            <h2>Stay oriented</h2>
+          </div>
+          <span class="feature-count">03</span>
+        </div>
+        <div class="focus-row">
+          <button class="stepper" data-zoom="-0.1" type="button" aria-label="Zoom out">−</button>
+          <div class="zoom-readout"><span id="pageZoom-value">100%</span><small>page zoom</small></div>
+          <button class="stepper" data-zoom="0.1" type="button" aria-label="Zoom in">+</button>
+        </div>
+        <div class="control-grid compact">
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="lens" />
+            <span class="toggle-ui"></span>
+            <span><strong>Cursor lens</strong><small>Magnify under pointer</small></span>
+          </label>
+          <label class="toggle-card">
+            <input type="checkbox" data-setting="cursor" data-boolean-value="large" />
+            <span class="toggle-ui"></span>
+            <span><strong>Large cursor</strong><small>Add a focus ring</small></span>
+          </label>
+        </div>
+        <div class="select-row">
+          <label class="field-label" for="theme">Force theme</label>
+          <select id="theme" data-setting="theme">
+            <option value="system">Use site theme</option>
+            <option value="dark">Force dark mode</option>
+            <option value="light">Force light mode</option>
+          </select>
+        </div>
+      </section>
+
+      <footer class="footer-actions">
+        <button id="reset" class="reset-button" type="button">
+          <span aria-hidden="true">↺</span> Reset current settings
+        </button>
+        <p class="shortcut-hint"><kbd>⌥⇧G</kbd> grayscale <span>·</span> <kbd>⌥⇧I</kbd> invert</p>
+      </footer>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
