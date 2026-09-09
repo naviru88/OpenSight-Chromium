@@ -138,7 +138,23 @@ function ensureStyles() {
       display: none; color: white; font: 600 14px/1.4 system-ui, sans-serif;
     }
     #${LENS_ID}::after { content: ""; position: absolute; inset: 50% 0 auto; border-top: 1px solid rgba(125,226,194,.45); }
-    #${LENS_ID} .opensight-lens-content { transform: scale(1.35); transform-origin: top left; padding: 14px; min-width: 180px; }
+    #${LENS_ID} .opensight-lens-content {
+      position: relative; z-index: 1; display: block; width: max-content; max-width: 204px;
+      min-height: 100%; transform: scale(1.35); transform-origin: top left; padding: 14px;
+      color: #f6fffb !important; background: linear-gradient(145deg, #263b46, #17262f) !important;
+      font: 600 14px/1.45 system-ui, sans-serif !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,.72);
+    }
+    #${LENS_ID} .opensight-lens-content * {
+      color: #f6fffb !important; opacity: 1 !important; filter: none !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,.72);
+    }
+    #${LENS_ID} .opensight-lens-content img,
+    #${LENS_ID} .opensight-lens-content video,
+    #${LENS_ID} .opensight-lens-content canvas,
+    #${LENS_ID} .opensight-lens-content svg {
+      background: transparent !important; filter: none !important;
+    }
   `;
 }
 
@@ -237,7 +253,26 @@ function updateLens(event) {
     clone.removeAttribute("id");
     clone.querySelectorAll?.("[id]").forEach((node) => node.removeAttribute("id"));
     const computed = getComputedStyle(target);
-    clone.style.cssText = `display:block; width:${Math.min(target.getBoundingClientRect().width, 210)}px; min-height:${Math.max(target.getBoundingClientRect().height, 22)}px; color:${computed.color}; background:${computed.backgroundColor};`;
+    clone.classList.add("opensight-lens-clone");
+    clone.style.cssText = `
+      display:block;
+      width:${Math.min(target.getBoundingClientRect().width, 204)}px;
+      min-height:${Math.max(target.getBoundingClientRect().height, 22)}px;
+      color:#f6fffb !important;
+      background:transparent !important;
+      font-family:${computed.fontFamily};
+      font-size:${computed.fontSize};
+      line-height:${computed.lineHeight};
+    `;
+    clone.querySelectorAll?.("*").forEach((node) => {
+      const tagName = node.tagName?.toLowerCase();
+      if (!["img", "video", "canvas", "svg"].includes(tagName)) {
+        node.style.setProperty("color", "#f6fffb", "important");
+        node.style.setProperty("background-color", "transparent", "important");
+        node.style.setProperty("opacity", "1", "important");
+        node.style.setProperty("filter", "none", "important");
+      }
+    });
     content.replaceChildren(clone);
   });
 }
