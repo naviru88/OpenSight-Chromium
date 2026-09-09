@@ -2,6 +2,16 @@
 
 OpenSight makes websites easier to see, read, and navigate with visual filters, readability controls, motion reduction, zoom, and focus aids.
 
+## Features
+
+- **Visual adjustments:** grayscale, inverted colors, color-vision filters, high-contrast presets, and forced dark or light themes
+- **Readable text:** independent text scaling, bold text, a reading-friendly font, line-height, and letter-spacing controls
+- **Simplified pages:** text-only mode that removes images, ads, navigation, and other visual clutter
+- **Focus aids:** page zoom, cursor lens, large cursor, and clear outlines around links and buttons
+- **Motion control:** reduce animations, transitions, and media motion
+- **Flexible preferences:** save settings for one site or every site, sync settings with browser storage, and reset them anytime
+- **Keyboard shortcuts:** quickly toggle grayscale or inverted colors without opening the popup
+
 ## Download
 
 Download the latest Chromium package from the shared Drive folder:
